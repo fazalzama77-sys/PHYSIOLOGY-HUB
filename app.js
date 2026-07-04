@@ -13605,8 +13605,10 @@ function renderQuestion() {
   
   optContainer.innerHTML = '';
   fitbInput.value = '';
-  confContainer.classList.add('hidden');
-  confContainer.style.display = 'none';
+  if (confContainer) {
+    confContainer.classList.add('hidden');
+    confContainer.style.display = 'none';
+  }
 
   if (currentQ.format === 'FITB') {
     fitbContainer.classList.remove('hidden');
@@ -13920,6 +13922,41 @@ if (btnFlag) {
       showToast('Question flagged for review.', 'info');
     }
     renderQuestion();
+  });
+}
+
+// Submit Quiz button
+const btnFinishQuiz = document.getElementById('btn-finish-quiz');
+if (btnFinishQuiz) {
+  btnFinishQuiz.addEventListener('click', () => {
+    if (!quizSession || quizSession.isFinished) return;
+    
+    // Check if there are unanswered questions
+    const unansweredIndices = [];
+    quizSession.questions.forEach((q, idx) => {
+      if (quizSession.answers[idx] === undefined || quizSession.answers[idx] === '') {
+        unansweredIndices.push(idx);
+      }
+    });
+
+    if (unansweredIndices.length > 0) {
+      const confirmFinish = confirm(`You have ${unansweredIndices.length} unanswered questions. Are you sure you want to finish and submit the quiz?`);
+      if (!confirmFinish) {
+        // Jump to first unanswered question
+        quizSession.currentIndex = unansweredIndices[0];
+        renderQuestion();
+        return;
+      }
+    } else {
+      const confirmFinish = confirm("Are you sure you want to finish and submit the quiz?");
+      if (!confirmFinish) return;
+    }
+    
+    // Add current question's elapsed time before finishing
+    const elapsed = Date.now() - quizSession.questionStartTime;
+    quizSession.perQuestionTime[quizSession.currentIndex] += elapsed;
+    
+    finishQuiz();
   });
 }
 

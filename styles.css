@@ -259,9 +259,9 @@ nav button.active {
   background: transparent;
   border: 1px solid var(--border-color);
   color: var(--text-main);
-  padding: 0.45rem 1rem;
+  padding: 0.25rem 0.6rem;
   border-radius: var(--radius-md);
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   font-family: var(--font-main);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1116,12 +1116,37 @@ kbd {
   align-items: center;
 }
 
+.action-row-group {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
 .btn-skip {
   color: var(--text-muted);
 }
 
 .btn-flag {
   color: var(--warning-color);
+}
+
+/* Submit Quiz button */
+.btn-finish-quiz {
+  background: var(--warning-color, #f59e0b);
+  color: #ffffff !important;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-finish-quiz:hover {
+  background: #d97706;
+  color: #ffffff !important;
+  transform: translateY(-1px);
 }
 
 /* Explanation Panel */
@@ -2207,8 +2232,8 @@ kbd {
   }
 
   .theme-btn {
-    padding: 0.4rem 0.85rem;
-    font-size: 0.82rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.72rem;
   }
 
   .streak-badge {
@@ -2365,8 +2390,19 @@ kbd {
     gap: 0.6rem;
   }
 
-  .quiz-actions .btn {
+  .quiz-actions > .btn {
     width: 100%;
+  }
+
+  .action-row-group {
+    display: flex;
+    gap: 0.6rem;
+    width: 100%;
+  }
+
+  .action-row-group .btn {
+    flex: 1;
+    width: 50% !important;
   }
 
   .explanation-card {

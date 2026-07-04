@@ -199,6 +199,7 @@
                   <span id="per-question-timer" class="pq-timer" title="Time on this question">⏱ 0s</span>
                   <span id="streak-display" class="streak-display hidden" title="Correct streak">🔥 0</span>
                   <span id="timer-display" class="timer-badge">00:00</span>
+                  <button id="btn-finish-quiz" class="btn btn-finish-quiz" title="Submit/Finish Quiz session">Submit Quiz</button>
                 </div>
               </div>
             </div>
@@ -223,21 +224,13 @@
                 <input type="text" id="fitb-input" placeholder="Type your answer here..." autocomplete="off">
               </div>
 
-              <!-- Confidence Rating -->
-              <div id="confidence-container" class="confidence-container hidden" style="display: none;">
-                <span class="confidence-label">How confident were you?</span>
-                <div class="confidence-buttons">
-                  <button class="confidence-btn conf-sure" data-confidence="sure">😎 Sure</button>
-                  <button class="confidence-btn conf-unsure" data-confidence="unsure">🤔 Unsure</button>
-                  <button class="confidence-btn conf-guessed" data-confidence="guessed">🎲 Guessed</button>
-                </div>
-              </div>
-
               <div class="quiz-actions">
                 <button id="btn-submit-answer" class="btn btn-primary">Check Answer</button>
                 <button id="btn-skip-question" class="btn btn-secondary btn-skip">⏭ Skip</button>
-                <button id="btn-flag-question" class="btn btn-secondary btn-flag">🚩 Flag</button>
-                <button id="btn-bookmark-question" class="btn btn-secondary">☆ Bookmark</button>
+                <div class="action-row-group">
+                  <button id="btn-flag-question" class="btn btn-secondary btn-flag">🚩 Flag</button>
+                  <button id="btn-bookmark-question" class="btn btn-secondary">☆ Bookmark</button>
+                </div>
                 <button id="btn-next-question" class="btn btn-accent hidden" style="display: none;">Next Question →</button>
               </div>
             </div>
