@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IVRI Physiology Pro - Question Practice</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="logo-pulse"></span>
+      <span class="logo-text">IVRI Physiology Pro</span>
+    </div>
+    <nav>
+      <button id="tab-dashboard" class="active">Dashboard</button>
+      <button id="tab-practice">Practice Engine</button>
+      <button id="tab-flashcards">Flashcards</button>
+      <button id="tab-bookmarks">Bookmarks</button>
+      <button id="tab-analytics">Analytics</button>
+    </nav>
+    <button id="theme-toggle" class="theme-btn">
+      <span class="sun-icon">☀️ Light</span>
+      <span class="moon-icon">🌙 Dark</span>
+    </button>
+  </header>
+
+  <main>
+    <!-- DASHBOARD -->
+    <section id="dashboard-section">
+      <div class="welcome-banner">
+        <h1>Welcome back, BVSc & AH Scholar</h1>
+        <p>Your comprehensive question bank for the first-year Veterinary Physiology syllabus at IVRI. Master high-yield, tricky questions aligned with the VCI MSVE 2016 regulations.</p>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-value" id="stat-total-q">1,100</div>
+          <div class="stat-label">Total VCI Questions</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-practiced">0</div>
+          <div class="stat-label">Questions Answered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-bookmarks">0</div>
+          <div class="stat-label">Bookmarked Items</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-avg-score">0%</div>
+          <div class="stat-label">Average Accuracy</div>
+        </div>
+      </div>
+
+      <h2 class="section-title">Physiological Systems (VCI Units)</h2>
+      <div class="units-grid" id="dashboard-units-grid">
+        <!-- Dynamically populated unit cards -->
+      </div>
+    </section>
+
+    <!-- PRACTICE -->
+    <section id="practice-section" class="hidden" style="display: none;">
+      <div class="practice-header">
+        <h1>Practice Setup</h1>
+        <p>Configure a custom quiz session or practice your weak areas.</p>
+      </div>
+      
+      <div id="setup-container">
+        <div class="setup-grid">
+          <div class="setup-field">
+            <label for="setup-mode">Mode</label>
+            <select id="setup-mode">
+              <option value="study">Study Mode (Instant Feedback & Explanations)</option>
+              <option value="exam">Exam Mode (Timed Mock Exam)</option>
+              <option value="revision">Revision Mode (Practice Wrong Answers)</option>
+            </select>
+          </div>
+
+          <div class="setup-field">
+            <label for="setup-unit">Syllabus Unit</label>
+            <select id="setup-unit">
+              <option value="all">All Units (Comprehensive)</option>
+              <option value="1">Unit 1: Blood, CV, Nervous & Muscular</option>
+              <option value="2">Unit 2: Digestive & Respiratory</option>
+              <option value="3">Unit 3: Excretory & Endocrine</option>
+              <option value="4">Unit 4: Reproduction, Lactation & Growth</option>
+            </select>
+          </div>
+
+          <div class="setup-field">
+            <label for="setup-category">Question Type Category</label>
+            <select id="setup-category">
+              <option value="all">Theory & Practical Combined</option>
+              <option value="theory">Theory Exam (Paper-I & II)</option>
+              <option value="practical">Practical Exam (Spotting & Viva)</option>
+            </select>
+          </div>
+
+          <div class="setup-field">
+            <label for="setup-format">Question Format</label>
+            <select id="setup-format">
+              <option value="all">All Formats</option>
+              <option value="mcq">Multiple Choice Questions (MCQ)</option>
+              <option value="fitb">Fill in the Blanks (FITB)</option>
+              <option value="tf">True / False (T/F)</option>
+            </select>
+          </div>
+
+          <div class="setup-field">
+            <label for="setup-count">Number of Questions</label>
+            <input type="number" id="setup-count" min="1" value="20" placeholder="Type question count...">
+          </div>
+        </div>
+
+        <button id="btn-start-quiz" class="btn btn-primary btn-large">Launch Quiz Session</button>
+      </div>
+
+      <!-- Active Quiz Engine -->
+      <div id="quiz-container" class="hidden" style="display: none;">
+        <div class="quiz-progress-bar">
+          <div class="progress-bar-fill" id="quiz-progress-fill"></div>
+        </div>
+        <div class="quiz-info-row">
+          <span id="question-index-display">Question 1 of 10</span>
+          <span id="timer-display" class="timer-badge">00:00</span>
+        </div>
+
+        <div class="card quiz-card">
+          <div id="question-text" class="question-text">
+            Loading question...
+          </div>
+
+          <div id="options-container" class="options-grid">
+            <!-- MCQ or T/F choices -->
+          </div>
+
+          <div id="fitb-container" class="hidden" style="display: none;">
+            <input type="text" id="fitb-input" placeholder="Type your answer here..." autocomplete="off">
+          </div>
+
+          <div class="quiz-actions">
+            <button id="btn-submit-answer" class="btn btn-primary">Check Answer</button>
+            <button id="btn-bookmark-question" class="btn btn-secondary">★ Bookmark</button>
+            <button id="btn-next-question" class="btn btn-accent hidden" style="display: none;">Next Question →</button>
+          </div>
+        </div>
+
+        <div id="explanation-container" class="explanation-card hidden" style="display: none;">
+          <!-- Feedback & explanations -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SESSION COMPLETED / RESULTS SCREEN -->
+    <section id="results-section" class="hidden" style="display: none;">
+      <h1>Session Completed!</h1>
+      <p>Here is your performance summary for the completed practice quiz.</p>
+      
+      <div class="analytics-dashboard">
+        <div class="analytics-main-card">
+          <h3>Your Score</h3>
+          <div id="results-score-value" style="font-size: 5rem; font-weight: 800; color: var(--primary-color);">85%</div>
+          <p id="results-score-text">You answered 17 out of 20 questions correctly.</p>
+          
+          <div style="display: flex; flex-direction: column; gap: 1rem; width: 100%; margin-top: 2rem;">
+            <button id="btn-review-session" class="btn btn-primary">Review Answers & Explanations</button>
+            <button id="btn-results-dash" class="btn btn-secondary">Back to Dashboard</button>
+          </div>
+        </div>
+
+        <div class="analytics-breakdown">
+          <h3>Performance Breakdown</h3>
+          <div id="results-breakdown-container" class="unit-analytics-grid">
+            <!-- Dynamically filled on completion -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FLASHCARDS -->
+    <section id="flashcards-section" class="hidden" style="display: none;">
+      <h1>Active Recall Flashcards</h1>
+      <p>Master physiological ranges, formulas, and critical concepts in card format with instant flip recall.</p>
+      
+      <div class="flashcards-area">
+        <div class="flashcard-container" id="flashcard-box">
+          <div class="flashcard-card">
+            <div class="card-face card-front">
+              <div class="card-category" id="card-front-category">Category</div>
+              <div class="card-content" id="card-front-text">Concept Question</div>
+              <div class="card-hint">Click Card to Flip</div>
+            </div>
+            <div class="card-face card-back">
+              <div class="card-category" id="card-back-category">Answer / Details</div>
+              <div class="card-content" id="card-back-text">Physiological parameters and ranges</div>
+              <div class="card-hint">Click Card to Flip Back</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flashcard-controls">
+          <button id="btn-prev-card" class="btn btn-secondary">← Previous</button>
+          <span id="flashcard-index">Card 1 of 10</span>
+          <button id="btn-next-card" class="btn btn-primary">Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKMARKS -->
+    <section id="bookmarks-section" class="hidden" style="display: none;">
+      <h1>Bookmarked Questions</h1>
+      <p>Revise your saved, tricky questions from past practice sessions. Bookmarks are stored in your local browser.</p>
+      
+      <div class="bookmarks-grid" id="bookmarks-list">
+        <!-- Dynamically populated bookmarks -->
+      </div>
+    </section>
+
+    <!-- ANALYTICS -->
+    <section id="analytics-section" class="hidden" style="display: none;">
+      <h1>Performance & Analytics</h1>
+      <p>Analyze your strengths and weaknesses across the VCI units to target your study sessions effectively.</p>
+      
+      <div class="analytics-dashboard">
+        <div class="analytics-main-card">
+          <h3>Overall Accuracy</h3>
+          <div id="exam-score">No quizzes completed yet.</div>
+          <button id="btn-reset-progress" class="btn btn-secondary btn-danger">Reset All Progress Data</button>
+        </div>
+
+        <div class="analytics-breakdown">
+          <h3>Accuracy by Physiological System</h3>
+          <div id="unit-analytics" class="unit-analytics-grid">
+            <!-- Dynamically populated progress bars per unit -->
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-title">Session History</h3>
+      <div class="history-list" id="exam-history-list">
+        <!-- Dynamic list of historical records -->
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
