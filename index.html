@@ -481,8 +481,11 @@
       <div id="unit-analytics" style="display: none;"></div>
       <div id="exam-history-list" style="display: none;"></div>
 
-      <!-- Reset -->
-      <div class="analytics-reset">
+      <!-- Backup, Restore, and Reset Data -->
+      <div class="analytics-reset" style="display: flex; gap: 1rem; justify-content: center; align-items: center; margin-top: 2.5rem; flex-wrap: wrap;">
+        <button id="btn-export-data" class="btn btn-secondary" title="Download a backup file of your progress to transfer or keep safe">📤 Export Backup</button>
+        <button id="btn-import-data" class="btn btn-secondary" title="Restore your progress from a previously saved backup file">📥 Import Backup</button>
+        <input type="file" id="file-import-backup" accept=".json" style="display: none;">
         <button id="btn-reset-progress" class="btn btn-secondary btn-danger">🗑️ Reset All Progress Data</button>
       </div>
     </section>
