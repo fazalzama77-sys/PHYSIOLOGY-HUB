@@ -12918,79 +12918,504 @@ const questions = localQuestionBank.units.flatMap(u => u.questions.map(q => ({
 // 15 High-Yield Veterinary Physiology Flashcards
 const flashcards = [
   {
-    category: "Cardiovascular",
-    question: "What is the formula for Cardiac Output (CO)?",
-    answer: "CO = HR × SV \n(Cardiac Output = Heart Rate × Stroke Volume)"
+    "category": "Cardiovascular",
+    "question": "What is the formula for Cardiac Output (CO)?",
+    "answer": "CO = HR \u00d7 SV \n(Cardiac Output = Heart Rate \u00d7 Stroke Volume)"
   },
   {
-    category: "Renal",
-    question: "What are the normal Glomerular Filtration Rates (GFR) for dogs and cats?",
-    answer: "Dogs: 3.0 – 5.0 mL/min/kg \nCats: 1.5 – 2.5 mL/min/kg"
+    "category": "Renal",
+    "question": "What are the normal Glomerular Filtration Rates (GFR) for dogs and cats?",
+    "answer": "Dogs: 3.0 \u2013 5.0 mL/min/kg \nCats: 1.5 \u2013 2.5 mL/min/kg"
   },
   {
-    category: "Hematology",
-    question: "What is the normal Packed Cell Volume (PCV) range in dogs and cats?",
-    answer: "Dogs: 37% – 55% \nCats: 30% – 45%"
+    "category": "Hematology",
+    "question": "What is the normal Packed Cell Volume (PCV) range in dogs and cats?",
+    "answer": "Dogs: 37% \u2013 55% \nCats: 30% \u2013 45%"
   },
   {
-    category: "Acid-Base",
-    question: "What is the normal blood pH range for domestic mammals?",
-    answer: "7.35 to 7.45 (highly regulated physiological range)"
+    "category": "Acid-Base",
+    "question": "What is the normal blood pH range for domestic mammals?",
+    "answer": "7.35 to 7.45 (highly regulated physiological range)"
   },
   {
-    category: "Ruminant Digestion",
-    question: "What is the normal rate of primary rumen contractions in healthy cattle?",
-    answer: "1 to 2 contractions per minute (monitored via auscultation of the left paralumbar fossa)"
+    "category": "Ruminant Digestion",
+    "question": "What is the normal rate of primary rumen contractions in healthy cattle?",
+    "answer": "1 to 2 contractions per minute (monitored via auscultation of the left paralumbar fossa)"
   },
   {
-    category: "Hematology",
-    question: "What is the lifespan of red blood cells in dogs, cats, and horses?",
-    answer: "Dogs: ~120 days \nCats: ~70 - 80 days \nHorses: ~140 - 150 days"
+    "category": "Hematology",
+    "question": "What is the lifespan of red blood cells in dogs, cats, and horses?",
+    "answer": "Dogs: ~120 days \nCats: ~70 - 80 days \nHorses: ~140 - 150 days"
   },
   {
-    category: "Cardiovascular",
-    question: "What does the Bohr Effect state?",
-    answer: "An increase in CO2, acidity (lower pH), or temperature shifts the oxygen-hemoglobin dissociation curve to the right, facilitating oxygen unloading in tissues."
+    "category": "Cardiovascular",
+    "question": "What does the Bohr Effect state?",
+    "answer": "An increase in CO2, acidity (lower pH), or temperature shifts the oxygen-hemoglobin dissociation curve to the right, facilitating oxygen unloading in tissues."
   },
   {
-    category: "Endocrinology",
-    question: "How does Antidiuretic Hormone (ADH / Vasopressin) increase renal water reabsorption?",
-    answer: "It triggers the insertion of aquaporin-2 channels into the apical membranes of principal cells in the collecting ducts."
+    "category": "Endocrinology",
+    "question": "How does Antidiuretic Hormone (ADH / Vasopressin) increase renal water reabsorption?",
+    "answer": "It triggers the insertion of aquaporin-2 channels into the apical membranes of principal cells in the collecting ducts."
   },
   {
-    category: "Reproduction & Lactation",
-    question: "Which hormone mediates the milk ejection ('let-down') reflex and how?",
-    answer: "Oxytocin, released from the posterior pituitary, stimulates contraction of myoepithelial cells surrounding the mammary alveoli."
+    "category": "Reproduction & Lactation",
+    "question": "Which hormone mediates the milk ejection ('let-down') reflex and how?",
+    "answer": "Oxytocin, released from the posterior pituitary, stimulates contraction of myoepithelial cells surrounding the mammary alveoli."
   },
   {
-    category: "Ruminant Digestion",
-    question: "List the three major Volatile Fatty Acids (VFAs) and specify the main gluconeogenic precursor.",
-    answer: "VFAs: Acetate, Propionate, and Butyrate. \nPropionate is the primary precursor used for gluconeogenesis in the ruminant liver."
+    "category": "Ruminant Digestion",
+    "question": "List the three major Volatile Fatty Acids (VFAs) and specify the main gluconeogenic precursor.",
+    "answer": "VFAs: Acetate, Propionate, and Butyrate. \nPropionate is the primary precursor used for gluconeogenesis in the ruminant liver."
   },
   {
-    category: "Cardiovascular",
-    question: "What is the Bainbridge Reflex?",
-    answer: "A sympathetic reflex where increased venous return stretches right atrial receptors, sending signals to the medulla to increase heart rate."
+    "category": "Cardiovascular",
+    "question": "What is the Bainbridge Reflex?",
+    "answer": "A sympathetic reflex where increased venous return stretches right atrial receptors, sending signals to the medulla to increase heart rate."
   },
   {
-    category: "Cardiovascular",
-    question: "Explain the Frank-Starling Law of the Heart.",
-    answer: "Within physiological limits, the force of ventricular contraction is directly proportional to the initial length of myocardial fibers (end-diastolic volume/preload)."
+    "category": "Cardiovascular",
+    "question": "Explain the Frank-Starling Law of the Heart.",
+    "answer": "Within physiological limits, the force of ventricular contraction is directly proportional to the initial length of myocardial fibers (end-diastolic volume/preload)."
   },
   {
-    category: "Muscle Physiology",
-    question: "Differentiate between Type I and Type II muscle fibers.",
-    answer: "Type I: Slow-twitch, high oxidative capacity, rich in myoglobin, fatigue-resistant. \nType II: Fast-twitch, high glycolytic capacity, fatigue-susceptible."
+    "category": "Muscle Physiology",
+    "question": "Differentiate between Type I and Type II muscle fibers.",
+    "answer": "Type I: Slow-twitch, high oxidative capacity, rich in myoglobin, fatigue-resistant. \nType II: Fast-twitch, high glycolytic capacity, fatigue-susceptible."
   },
   {
-    category: "Avian Excretory",
-    question: "What is the primary nitrogenous waste excreted by birds, and why?",
-    answer: "Uric acid (uricotelic excretion). It is excreted as a semi-solid paste, requiring minimal water and conserving maximum body fluid."
+    "category": "Avian Excretory",
+    "question": "What is the primary nitrogenous waste excreted by birds, and why?",
+    "answer": "Uric acid (uricotelic excretion). It is excreted as a semi-solid paste, requiring minimal water and conserving maximum body fluid."
   },
   {
-    category: "Nervous System",
-    question: "What is the ionic basis of the resting membrane potential (RMP)?",
-    answer: "It is primarily determined by the high permeability of the cell membrane to potassium ions (K+) through leak channels, combined with the Na+/K+ ATPase pump."
+    "category": "Nervous System",
+    "question": "What is the ionic basis of the resting membrane potential (RMP)?",
+    "answer": "It is primarily determined by the high permeability of the cell membrane to potassium ions (K+) through leak channels, combined with the Na+/K+ ATPase pump."
+  },
+  {
+    "category": "Hematology",
+    "question": "What is the function and chemical nature of Erythropoietin (EPO)?",
+    "answer": "EPO is a glycoprotein hormone produced mainly by renal cortical interstitial cells that stimulates red blood cell production (erythropoiesis) in response to hypoxia."
+  },
+  {
+    "category": "Hematology",
+    "question": "Name three major derivatives of hemoglobin and their clinical significance.",
+    "answer": "1. Oxyhemoglobin (normal oxygenated)\n2. Methemoglobin (oxidized Fe3+, cannot bind O2, chocolate-brown blood)\n3. Carboxyhemoglobin (CO bound, high affinity, cherry-red blood)"
+  },
+  {
+    "category": "Hematology",
+    "question": "Differentiate between Plasma and Serum.",
+    "answer": "Plasma contains clotting factors (like fibrinogen) because it is collected with anticoagulant. Serum is the liquid portion remaining after clotting (lacks fibrinogen)."
+  },
+  {
+    "category": "Hematology",
+    "question": "What is the primary site of red blood cell destruction (hemocatheresis)?",
+    "answer": "The spleen (specifically the red pulp), where aging, rigid RBCs are trapped and phagocytosed by macrophages, recycling iron and producing bilirubin."
+  },
+  {
+    "category": "Hematology",
+    "question": "What is Erythrocyte Sedimentation Rate (ESR) and why is it elevated during inflammation?",
+    "answer": "ESR is the rate at which RBCs settle. Inflammation increases acute-phase proteins (like fibrinogen), reducing negative charge on RBCs and causing them to stack (rouleaux) and settle faster."
+  },
+  {
+    "category": "Cardiovascular",
+    "question": "Explain the components of a normal electrocardiogram (ECG) wave.",
+    "answer": "P wave: Atrial depolarization\nQRS complex: Ventricular depolarization (masks atrial repolarization)\nT wave: Ventricular repolarization"
+  },
+  {
+    "category": "Cardiovascular",
+    "question": "What is the physiological significance of the delay at the Atrioventricular (AV) node?",
+    "answer": "It allows sufficient time for the atria to contract and empty their blood into the ventricles before ventricular contraction begins."
+  },
+  {
+    "category": "Cardiovascular",
+    "question": "Differentiate between the baroreceptor reflex and the chemoreceptor reflex.",
+    "answer": "Baroreceptors (aortic arch/carotid sinus) detect blood pressure changes to regulate it. Chemoreceptors detect O2, CO2, and pH changes to primarily regulate respiration."
+  },
+  {
+    "category": "Cardiovascular",
+    "question": "What is the Windkessel effect in vascular mechanics?",
+    "answer": "The elastic recoil of large arteries (like the aorta) during diastole, which stores potential energy during systole and releases it to maintain continuous blood flow."
+  },
+  {
+    "category": "Cardiovascular",
+    "question": "Describe the bypass structures in fetal circulation and their functions.",
+    "answer": "Ductus venosus: Bypasses fetal liver\nForamen ovale: Shunts blood from right to left atrium\nDuctus arteriosus: Shunts blood from pulmonary artery to aorta, bypassing non-functional lungs"
+  },
+  {
+    "category": "Muscle Physiology",
+    "question": "What is the role of Calcium (Ca2+) in skeletal muscle contraction?",
+    "answer": "Ca2+ binds to troponin C, causing a conformational change in tropomyosin that exposes the myosin-binding sites on actin, initiating cross-bridge cycling."
+  },
+  {
+    "category": "Muscle Physiology",
+    "question": "Explain the mechanism of Rigor Mortis.",
+    "answer": "After death, ATP depletion prevents the detachment of myosin heads from actin. The cross-bridges remain locked in place, causing stiffness until autolysis degrades muscle proteins."
+  },
+  {
+    "category": "Muscle Physiology",
+    "question": "What is excitation-contraction coupling (EC coupling)?",
+    "answer": "The sequence of events by which an electrical action potential in the sarcolemma triggers Ca2+ release from the sarcoplasmic reticulum (via RyR channels) to cause contraction."
+  },
+  {
+    "category": "Muscle Physiology",
+    "question": "Differentiate between Isometric and Isotonic muscle contractions.",
+    "answer": "Isometric: Muscle develops tension but does not shorten (e.g., holding a load). Isotonic: Muscle changes length while maintaining constant tension (e.g., lifting a weight)."
+  },
+  {
+    "category": "Muscle Physiology",
+    "question": "What causes physiological muscle fatigue during prolonged activity?",
+    "answer": "Depletion of glycogen stores, accumulation of inorganic phosphate and lactic acid (reducing pH), and ionic imbalances (like K+ in T-tubules) that impair propagation."
+  },
+  {
+    "category": "Nervous System",
+    "question": "What is the function of the Sodium-Potassium ATPase pump in nerve cells?",
+    "answer": "It pumps 3 Na+ out and 2 K+ in against their gradients. This maintains the resting membrane potential (RMP) and concentration gradients necessary for action potentials."
+  },
+  {
+    "category": "Nervous System",
+    "question": "Explain the absolute and relative refractory periods of an action potential.",
+    "answer": "Absolute: Na+ channels are inactivated; no stimulus can trigger another AP. Relative: Some Na+ channels recovered, but K+ efflux causes hyperpolarization; a stronger stimulus is needed."
+  },
+  {
+    "category": "Nervous System",
+    "question": "Define Saltatory Conduction.",
+    "answer": "The rapid propagation of action potentials along myelinated axons, where the impulse jumps from one Node of Ranvier to the next, conserving energy and increasing velocity."
+  },
+  {
+    "category": "Nervous System",
+    "question": "Differentiate between Sympathetic and Parasympathetic nervous system outputs.",
+    "answer": "Sympathetic ('fight-or-flight'): Increases heart rate, bronchodilates, inhibits digestion. Parasympathetic ('rest-and-digest'): Decreases heart rate, bronchoconstricts, stimulates digestion."
+  },
+  {
+    "category": "Nervous System",
+    "question": "What is the primary neurotransmitter at the neuromuscular junction (NMJ) and how is its action terminated?",
+    "answer": "Acetylcholine (ACh) is the neurotransmitter. Its action is terminated by rapid enzymatic hydrolysis into choline and acetate by Acetylcholinesterase (AChE) in the synaptic cleft."
+  },
+  {
+    "category": "Special Senses",
+    "question": "What is Accommodation in ocular physiology?",
+    "answer": "The process by which the eye adjusts refractivity (changing lens curvature via ciliary muscle contraction) to focus clearly on near objects."
+  },
+  {
+    "category": "Special Senses",
+    "question": "Explain the physiological function of the Tapetum Lucidum in animals.",
+    "answer": "A reflective layer behind the retina that bounces light back through photoreceptors, maximizing light absorption in low-light environments (night vision) and causing eyeshine."
+  },
+  {
+    "category": "Special Senses",
+    "question": "Name the receptors for hearing and balance and their location.",
+    "answer": "Hearing: Hair cells in the Organ of Corti (cochlea). Balance: Hair cells in the semicircular ducts (crista ampullaris) and vestibule (macula)."
+  },
+  {
+    "category": "Special Senses",
+    "question": "Explain the path of olfactory transmission.",
+    "answer": "Odors bind to olfactory receptors in nasal cavity -> olfactory bulb -> olfactory tract -> olfactory cortex (limbic system, bypassing the thalamus)."
+  },
+  {
+    "category": "Ruminant Digestion",
+    "question": "Explain the four phases of the Rumination cycle.",
+    "answer": "1. Regurgitation (backward movement of bolus)\n2. Remastication (re-chewing)\n3. Redeclination (re-salivation)\n4. Reswallowing"
+  },
+  {
+    "category": "Ruminant Digestion",
+    "question": "What is the primary function of Bile Salts in digestion?",
+    "answer": "Bile salts emulsify dietary fats into smaller droplets (increasing lipase surface area) and form micelles to facilitate fat absorption in the small intestine."
+  },
+  {
+    "category": "Digestive System",
+    "question": "How is hydrochloric acid (HCl) secreted by parietal cells in the stomach?",
+    "answer": "Via the H+/K+ ATPase proton pump, which pumps H+ into the lumen in exchange for K+, while Cl- follows passively through chloride channels."
+  },
+  {
+    "category": "Digestive System",
+    "question": "Explain the role of gastric Intrinsic Factor.",
+    "answer": "It is a glycoprotein secreted by parietal/chief cells that binds to dietary Vitamin B12, protecting it from digestion and allowing its absorption in the ileum."
+  },
+  {
+    "category": "Ruminant Digestion",
+    "question": "Describe the anatomical compartments of the ruminant stomach.",
+    "answer": "Rumen (fermentation vat), Reticulum (honeycomb sorting/regurgitation), Omasum (water absorption), and Abomasum (true glandular stomach, acid/enzymes)."
+  },
+  {
+    "category": "Ruminant Digestion",
+    "question": "List the main Volatile Fatty Acids (VFAs) produced in the rumen and their metabolic destinations.",
+    "answer": "Acetate: Oxidized for energy or used for fatty acid synthesis\nPropionate: Primary gluconeogenic precursor\nButyrate: Converted to beta-hydroxybutyrate for energy/fatty acids"
+  },
+  {
+    "category": "Ruminant Digestion",
+    "question": "What is Urea Recycling in ruminants?",
+    "answer": "The process where urea produced in the liver is recycled back to the rumen (via saliva or rumen wall) for microbes to synthesize microbial protein."
+  },
+  {
+    "category": "Digestive System",
+    "question": "Describe digestion in the avian crop, proventriculus, and ventriculus.",
+    "answer": "Crop: Temporary storage and moistening\nProventriculus: Glandular stomach (secretes HCl and pepsin)\nVentriculus (Gizzard): Muscular grinding organ containing grit"
+  },
+  {
+    "category": "Respiratory System",
+    "question": "What is the function of pulmonary Surfactant and what cells secrete it?",
+    "answer": "Secreted by Type II alveolar cells, surfactant reduces surface tension within alveoli, preventing collapse during expiration and increasing lung compliance."
+  },
+  {
+    "category": "Respiratory System",
+    "question": "Explain the shape and physiological significance of the Oxygen-Hemoglobin Dissociation Curve.",
+    "answer": "It is sigmoidal (S-shaped) due to cooperative binding. The plateau ensures high O2 loading in lungs, while the steep phase facilitates unloading in active tissues."
+  },
+  {
+    "category": "Respiratory System",
+    "question": "Differentiate between Hypercapnia and Hypoxia.",
+    "answer": "Hypercapnia is abnormally elevated carbon dioxide (CO2) levels in the blood. Hypoxia is a deficiency of oxygen delivery or utilization at the tissue level."
+  },
+  {
+    "category": "Respiratory System",
+    "question": "What is the Haldane Effect?",
+    "answer": "The phenomenon where deoxygenation of blood increases its capacity to carry CO2, while oxygenation in the lungs facilitates CO2 unloading."
+  },
+  {
+    "category": "Respiratory System",
+    "question": "How is carbon dioxide (CO2) transported in the blood?",
+    "answer": "1. Dissolved in plasma (~7-10%)\n2. Bound to hemoglobin as carbaminohemoglobin (~20-23%)\n3. As bicarbonate ions (HCO3-) in plasma (~70%) converted by carbonic anhydrase"
+  },
+  {
+    "category": "Respiratory System",
+    "question": "Explain the term 'Lung Compliance'.",
+    "answer": "The measure of the lung's ability to stretch and expand. High compliance means the lungs expand easily; low compliance indicates stiff lungs."
+  },
+  {
+    "category": "Respiratory System",
+    "question": "Define Hyperpnea and how it differs from Tachypnea.",
+    "answer": "Hyperpnea is an increase in depth and rate of breathing to meet metabolic demands (e.g., exercise). Tachypnea is rapid, shallow breathing."
+  },
+  {
+    "category": "Renal",
+    "question": "Describe the forces that determine Glomerular Filtration Pressure (GFP).",
+    "answer": "Glomerular capillary hydrostatic pressure (favors filtration), Bowman's space hydrostatic pressure (opposes), and glomerular capillary oncotic pressure (opposes)."
+  },
+  {
+    "category": "Renal",
+    "question": "What is the Renal Threshold for Glucose and what happens when it is exceeded?",
+    "answer": "The plasma glucose concentration at which glucose first appears in urine. When exceeded, SGLT transporters saturate, leading to glucosuria (e.g., in diabetes)."
+  },
+  {
+    "category": "Renal",
+    "question": "What is the function of the Juxtaglomerular Apparatus (JGA)?",
+    "answer": "Comprised of macula densa and granular cells, it monitors NaCl in the distal tubule and blood pressure in the afferent arteriole, regulating GFR and secreting renin."
+  },
+  {
+    "category": "Renal",
+    "question": "Explain the Countercurrent Multiplier system in the loop of Henle.",
+    "answer": "The mechanism that creates a hyperosmotic medullary interstitial gradient, allowing water reabsorption from the collecting duct under ADH influence."
+  },
+  {
+    "category": "Renal",
+    "question": "Define Micturition and describe its reflex pathway.",
+    "answer": "Emptying of the bladder. Bladder stretch receptors signal the sacral spinal cord, triggering parasympathetic contraction of the detrusor muscle and sphincter relaxation."
+  },
+  {
+    "category": "Renal",
+    "question": "What is Uremia and what are its common causes?",
+    "answer": "A clinical syndrome of metabolic wastes accumulating in the blood due to kidney failure, commonly caused by chronic nephritis or urinary obstruction."
+  },
+  {
+    "category": "Renal",
+    "question": "Differentiate between isotonic, hypertonic, and hypotonic dehydration.",
+    "answer": "Isotonic: Equal loss of water and solutes. Hypertonic: Greater loss of water than solutes. Hypotonic: Greater loss of solutes than water."
+  },
+  {
+    "category": "Acid-Base",
+    "question": "Explain the role of the Carbonic Acid-Bicarbonate buffer system.",
+    "answer": "Primary extracellular buffer system regulating blood pH. CO2 + H2O <-> H2CO3 <-> H+ + HCO3-. Lungs control CO2; kidneys control H+ excretion and HCO3- reabsorption."
+  },
+  {
+    "category": "Renal",
+    "question": "What is the function of Aldosterone in the kidney?",
+    "answer": "Secreted by the adrenal cortex, it acts on principal cells of late distal tubules/collecting ducts to increase Na+ reabsorption and K+ excretion, restoring blood volume."
+  },
+  {
+    "category": "Avian Excretory",
+    "question": "How does the kidney regulate urine concentration in birds?",
+    "answer": "Avian kidneys contain reptilian-type and mammalian-type nephrons. They excrete uric acid in suspension and can concentrate urine, but to a lesser degree than mammals."
+  },
+  {
+    "category": "Nervous System",
+    "question": "What is the composition and function of Cerebrospinal Fluid (CSF)?",
+    "answer": "A clear fluid low in protein, containing glucose and electrolytes. It cushions the brain/spinal cord, provides buoyancy, and removes waste."
+  },
+  {
+    "category": "Endocrinology",
+    "question": "What is the role of Parathyroid Hormone (PTH) in calcium homeostasis?",
+    "answer": "It increases blood Ca2+ by stimulating osteoclast bone resorption, increasing renal Ca2+ reabsorption, and stimulating Vitamin D (calcitriol) synthesis."
+  },
+  {
+    "category": "Endocrinology",
+    "question": "Describe the function of Calcitonin and where it is secreted.",
+    "answer": "Secreted by thyroid parafollicular (C) cells, it decreases blood Ca2+ by inhibiting osteoclasts and promoting renal excretion of Ca2+."
+  },
+  {
+    "category": "Endocrinology",
+    "question": "How does the Renin-Angiotensin-Aldosterone System (RAAS) regulate blood pressure?",
+    "answer": "Hypotension/low NaCl triggers Renin release -> cleaves Angiotensinogen to Angiotensin I -> converted to Angiotensin II by ACE -> vasoconstricts and releases Aldosterone."
+  },
+  {
+    "category": "Endocrinology",
+    "question": "What is the physiological function of Atrial Natriuretic Peptide (ANP)?",
+    "answer": "Secreted by stretched atrial cardiomyocytes in response to high blood volume, it promotes sodium/water excretion (diuresis) and vasodilates to reduce BP."
+  },
+  {
+    "category": "Endocrinology",
+    "question": "Explain the endocrine function of the Pineal Gland.",
+    "answer": "It secretes Melatonin in response to darkness, regulating circadian rhythms, photoperiodic reproduction, and seasonal behaviors in animals."
+  },
+  {
+    "category": "Endocrinology",
+    "question": "Describe the function of Growth Hormone (Somatotropin).",
+    "answer": "Secreted by the anterior pituitary, it stimulates growth/protein synthesis, mobilizes fatty acids, and triggers liver production of IGF-1."
+  },
+  {
+    "category": "Endocrinology",
+    "question": "What is the function of Follicle-Stimulating Hormone (FSH) in males and females?",
+    "answer": "Females: Stimulates growth/maturation of ovarian follicles and estrogen synthesis. Males: Stimulates spermatogenesis in Sertoli cells."
+  },
+  {
+    "category": "Endocrinology",
+    "question": "What is the function of Luteinizing Hormone (LH) in males and females?",
+    "answer": "Females: Triggers ovulation and stimulates development of corpus luteum (progesterone secretion). Males: Stimulates Leydig cells to produce testosterone."
+  },
+  {
+    "category": "Reproduction & Lactation",
+    "question": "Describe the stages of the Estrous Cycle in domestic animals.",
+    "answer": "Proestrus: Follicular growth\nEstrus: Sexual receptivity and ovulation\nMetestrus: Corpus luteum formation\nDiestrus: Mature luteal phase dominated by progesterone"
+  },
+  {
+    "category": "Reproduction & Lactation",
+    "question": "What is Luteolysis and which hormone triggers it in domestic ruminants?",
+    "answer": "The regression of the corpus luteum, triggered by pulsatile secretion of Prostaglandin F2-alpha (PGF2a) from the non-pregnant uterus."
+  },
+  {
+    "category": "Reproduction & Lactation",
+    "question": "Define Capacitation in sperm physiology.",
+    "answer": "The final maturation process that sperm undergo within the female tract, destabilizing the sperm membrane to enable fertilization and the acrosome reaction."
+  },
+  {
+    "category": "Reproduction & Lactation",
+    "question": "Explain the function of Sertoli cells in the testes.",
+    "answer": "Forms blood-testis barrier, nourishes developing sperm, phagocytoses debris, and secretes inhibin and androgen-binding protein (ABP)."
+  },
+  {
+    "category": "Reproduction & Lactation",
+    "question": "Explain the function of Leydig cells.",
+    "answer": "Located in the interstitial tissue between seminiferous tubules, they synthesize and secrete testosterone under LH stimulation."
+  },
+  {
+    "category": "Reproduction & Lactation",
+    "question": "Describe the primary hormones produced by the Placenta during pregnancy.",
+    "answer": "Progesterone (maintains pregnancy), Estrogens (promote uterine growth), and placental lactogens (support mammary development)."
+  },
+  {
+    "category": "Reproduction & Lactation",
+    "question": "What is the role of Prolactin in lactation?",
+    "answer": "An anterior pituitary hormone that stimulates mammary alveolar growth and lactogenesis (initiation of milk secretion) after birth."
+  },
+  {
+    "category": "Reproduction & Lactation",
+    "question": "How does Progesterone affect mammary gland development?",
+    "answer": "Stimulates development of alveoli/lobules during pregnancy; high levels inhibit actual milk secretion until birth."
+  },
+  {
+    "category": "Digestive System",
+    "question": "What is the function of the hormone Gastrin in digestive regulation?",
+    "answer": "A hormone secreted by gastric G-cells that stimulates parietal cells to secrete HCl and promotes gastric motility."
+  },
+  {
+    "category": "Digestive System",
+    "question": "Explain the physiological role of Secretin.",
+    "answer": "Secreted by duodenal S-cells in response to acid, it stimulates pancreatic duct cells to secrete bicarbonate-rich fluid to neutralize acid."
+  },
+  {
+    "category": "Digestive System",
+    "question": "Explain the physiological role of Cholecystokinin (CCK).",
+    "answer": "Secreted by duodenal I-cells in response to fat/protein, it stimulates pancreatic enzyme secretion and gallbladder contraction to release bile."
+  },
+  {
+    "category": "Digestive System",
+    "question": "What is the function of the hormone Ghrelin?",
+    "answer": "A peptide hormone produced by the stomach that acts on the hypothalamus to stimulate appetite and increase food intake ('hunger hormone')."
+  },
+  {
+    "category": "Environmental Physiology",
+    "question": "Define Homeothermy and describe how homeotherms respond to a cold environment.",
+    "answer": "Maintaining constant body temp. Cold response: skin vasoconstriction, piloerection (raising hair/feathers), shivering thermogenesis, and seeking shelter."
+  },
+  {
+    "category": "Environmental Physiology",
+    "question": "What is the role of brown adipose tissue (BAT) in newborns?",
+    "answer": "BAT is the primary site of non-shivering thermogenesis, containing uncoupling protein-1 (UCP-1) to generate heat directly instead of ATP."
+  },
+  {
+    "category": "Environmental Physiology",
+    "question": "What is the physiological difference between Acclimation and Acclimatization?",
+    "answer": "Acclimation: Adaptive change to a single variable in a controlled lab. Acclimatization: Adaptations to a complex natural environment (altitude, heat, cold) over time."
+  },
+  {
+    "category": "Environmental Physiology",
+    "question": "How do farm animals dissipate heat in a hot, humid environment?",
+    "answer": "Through sweating and panting (evaporative heat loss). High humidity reduces evaporation efficiency, increasing susceptibility to heat stress."
+  },
+  {
+    "category": "Environmental Physiology",
+    "question": "Describe the effect of high-altitude hypoxia on animal respiration.",
+    "answer": "Low PO2 triggers peripheral chemoreceptors to stimulate hyperventilation, causing respiratory alkalosis. Long term, it triggers EPO-stimulated polycythemia."
+  },
+  {
+    "category": "Reproduction & Lactation",
+    "question": "What are Pheromones and how do animals detect them?",
+    "answer": "Chemical signals excreted to influence same-species behavior or physiology. Detected via the Vomeronasal Organ (VNO / Jacobson's organ)."
+  },
+  {
+    "category": "Nervous System",
+    "question": "Define Synaptic Plasticity and its role in behavior.",
+    "answer": "The ability of synapses to strengthen or weaken in response to activity, forming the cellular basis of learning, memory, and behavioral adaptation."
+  },
+  {
+    "category": "Muscle Physiology",
+    "question": "What is the physiological basis of Rigor in shearing or muscle exercise?",
+    "answer": "The exhaustion of ATP and accumulation of calcium in the cytoplasm, leading to sustained actin-myosin cross-bridge binding."
+  },
+  {
+    "category": "Nervous System",
+    "question": "What is the role of the sympathetic-adrenal medulla axis during stress?",
+    "answer": "It triggers rapid release of catecholamines (epinephrine, norepinephrine) into the bloodstream, preparing the body for action ('fight-or-flight')."
+  },
+  {
+    "category": "Nervous System",
+    "question": "What is the role of the hypothalamus-pituitary-adrenal (HPA) axis in chronic stress?",
+    "answer": "Triggers CRH -> ACTH -> Glucocorticoid (cortisol/corticosterone) release, which mobilizes glucose, suppresses inflammation, and alters metabolism."
+  },
+  {
+    "category": "Nervous System",
+    "question": "Explain the physiological mechanism of thirst.",
+    "answer": "Increased plasma osmolarity or decreased blood volume stretches hypothalamic osmoreceptors and stimulates angiotensin II, triggering thirst."
+  },
+  {
+    "category": "Renal",
+    "question": "What is the function of Osteoclasts and Osteoblasts in bone homeostasis?",
+    "answer": "Osteoblasts synthesize bone matrix and promote mineralization. Osteoclasts resorb bone matrix by secreting acid and enzymes, releasing calcium."
+  },
+  {
+    "category": "Ruminant Digestion",
+    "question": "What is the difference between primary and secondary rumen contractions?",
+    "answer": "Primary: Mixing contractions originating in the reticulum (1-2/min). Secondary: Eructation contractions in the dorsal rumen sac to release gas (~1 every 2 min)."
+  },
+  {
+    "category": "Renal",
+    "question": "Explain the function of the Glomerulotubular Balance.",
+    "answer": "The intrinsic ability of the proximal tubule to reabsorb a constant fraction (typically 65-70%) of the GFR, protecting downstream segments from volume overload."
+  },
+  {
+    "category": "Reproduction & Lactation",
+    "question": "What is the role of Estrogen in mammary gland development?",
+    "answer": "Estrogen stimulates the ductal growth and branching of the mammary glands during puberty and pregnancy, working synergistically with progesterone."
   }
 ];
 
@@ -14511,6 +14936,29 @@ if (btnNextCard) {
       activeFlashcardIndex++;
       renderFlashcard();
     }
+  });
+}
+
+const btnShuffleCards = document.getElementById('btn-shuffle-cards');
+if (btnShuffleCards) {
+  btnShuffleCards.addEventListener('click', () => {
+    for (let i = flashcards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+    }
+    activeFlashcardIndex = 0;
+    renderFlashcard();
+    
+    // Visual feedback micro-interaction
+    const originalHtml = btnShuffleCards.innerHTML;
+    btnShuffleCards.innerHTML = '✨ Shuffled!';
+    btnShuffleCards.classList.add('btn-accent');
+    btnShuffleCards.classList.remove('btn-secondary');
+    setTimeout(() => {
+      btnShuffleCards.innerHTML = originalHtml;
+      btnShuffleCards.classList.remove('btn-accent');
+      btnShuffleCards.classList.add('btn-secondary');
+    }, 1000);
   });
 }
 
