@@ -29,6 +29,7 @@
       <button id="tab-flashcards">Flashcards</button>
       <button id="tab-bookmarks">Bookmarks</button>
       <button id="tab-analytics">Analytics</button>
+      <button id="tab-reminders">Reminders</button>
     </nav>
     <div class="header-right">
       <div id="streak-badge" class="streak-badge" title="Study Streak">
@@ -87,6 +88,57 @@
       <h2 class="section-title">Physiological Systems (VCI Units)</h2>
       <div class="units-grid" id="dashboard-units-grid">
         <!-- Dynamically populated unit cards -->
+      </div>
+    </section>
+
+    <!-- ===================== REMINDERS ===================== -->
+    <section id="reminders-section" class="hidden" style="display: none;">
+      <div class="reminders-header">
+        <div>
+          <span class="eyebrow">Build a consistent study habit</span>
+          <h1>Practice Reminders</h1>
+          <p>Create as many morning, afternoon, or night reminders as you need. Each one can use its own short motivational message.</p>
+        </div>
+        <div id="notification-status" class="notification-status">Checking notification support…</div>
+      </div>
+
+      <div class="reminder-layout">
+        <div class="reminder-card reminder-composer">
+          <h2>Add a reminder</h2>
+          <div class="reminder-form-grid">
+            <div class="setup-field">
+              <label for="reminder-time">Time</label>
+              <input id="reminder-time" type="time" value="06:00">
+            </div>
+            <div class="setup-field reminder-message-field">
+              <label for="reminder-message">Motivational message</label>
+              <input id="reminder-message" type="text" maxlength="120" value="Every question adds depth to your knowledge. Practice now!" placeholder="Write a short reason to practice…">
+            </div>
+          </div>
+          <fieldset class="weekday-picker">
+            <legend>Repeat on</legend>
+            <label><input type="checkbox" value="0" checked><span>Sun</span></label>
+            <label><input type="checkbox" value="1" checked><span>Mon</span></label>
+            <label><input type="checkbox" value="2" checked><span>Tue</span></label>
+            <label><input type="checkbox" value="3" checked><span>Wed</span></label>
+            <label><input type="checkbox" value="4" checked><span>Thu</span></label>
+            <label><input type="checkbox" value="5" checked><span>Fri</span></label>
+            <label><input type="checkbox" value="6" checked><span>Sat</span></label>
+          </fieldset>
+          <div class="reminder-actions">
+            <button id="btn-add-reminder" class="btn btn-primary">＋ Add reminder</button>
+            <button id="btn-enable-notifications" class="btn btn-secondary">Enable phone notifications</button>
+            <button id="btn-test-notification" class="btn btn-secondary">Send test</button>
+          </div>
+          <p class="delivery-note"><strong>Phone delivery:</strong> Install this PWA and allow notifications. Reminders work while the app is open; guaranteed delivery while it is fully closed requires connecting a Web Push server.</p>
+        </div>
+
+        <div class="reminder-card">
+          <div class="reminder-list-header">
+            <div><h2>Your daily rhythm</h2><p id="reminder-count">0 reminders</p></div>
+          </div>
+          <div id="reminder-list" class="reminder-list"></div>
+        </div>
       </div>
     </section>
 

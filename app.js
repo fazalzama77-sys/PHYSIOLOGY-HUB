@@ -13429,6 +13429,7 @@ const State = {
   dailyActivity: {}, // { 'YYYY-MM-DD': { questionsAttempted, correctCount, studyTimeMs } }
   streaks: { current: 0, best: 0, lastStudyDate: null },
   totalStudyTimeMs: 0,
+  reminders: [],
 
   load() {
     try {
@@ -13484,6 +13485,11 @@ const State = {
       const storedTime = localStorage.getItem('totalStudyTimeMs');
       this.totalStudyTimeMs = storedTime ? parseInt(storedTime, 10) || 0 : 0;
     } catch { this.totalStudyTimeMs = 0; }
+    try {
+      const storedReminders = localStorage.getItem('practiceReminders');
+      this.reminders = storedReminders ? JSON.parse(storedReminders) : [];
+      if (!Array.isArray(this.reminders)) this.reminders = [];
+    } catch { this.reminders = []; }
   },
 
   save() {
@@ -13497,6 +13503,7 @@ const State = {
       localStorage.setItem('dailyActivity', JSON.stringify(this.dailyActivity));
       localStorage.setItem('streaks', JSON.stringify(this.streaks));
       localStorage.setItem('totalStudyTimeMs', this.totalStudyTimeMs.toString());
+      localStorage.setItem('practiceReminders', JSON.stringify(this.reminders));
     } catch {
       // Ignore
     }
@@ -13585,8 +13592,8 @@ let activeFlashcardIndex = 0;
 const themeToggle = document.getElementById('theme-toggle');
 
 // Navigation Tabs
-const tabs = ['dashboard', 'practice', 'flashcards', 'bookmarks', 'analytics', 'results'];
-const mainTabs = ['dashboard', 'practice', 'flashcards', 'bookmarks', 'analytics'];
+const tabs = ['dashboard', 'practice', 'flashcards', 'bookmarks', 'analytics', 'reminders', 'results'];
+const mainTabs = ['dashboard', 'practice', 'flashcards', 'bookmarks', 'analytics', 'reminders'];
 
 // Toast Notification System
 function showToast(message, type = 'info', duration = 3000) {
@@ -13686,6 +13693,8 @@ mainTabs.forEach(tab => {
         renderAnalytics();
       } else if (tab === 'flashcards') {
         renderFlashcard();
+      } else if (tab === 'reminders') {
+        renderReminders();
       }
     });
   }
@@ -15967,6 +15976,128 @@ function handleKeyboardShortcuts(event) {
 
 document.addEventListener('keydown', handleKeyboardShortcuts);
 
+// Practice reminder scheduler. Browser timers provide reliable delivery while the
+// app is running; the service worker below also accepts real Web Push messages.
+const REMINDER_MOTIVATIONS = [
+  'Every question strengthens your clinical reasoning. Practice now!',
+  'A few focused minutes today become confident answers tomorrow.',
+  'Knowledge grows one question at a time. Keep your momentum!',
+  'Your future patients benefit from what you learn today.'
+];
+
+function notificationCapability() {
+  if (!('Notification' in window)) return { label: 'Notifications are not supported on this browser', type: 'error' };
+  if (!window.isSecureContext) return { label: 'Notifications need HTTPS or localhost', type: 'warning' };
+  if (Notification.permission === 'granted') return { label: 'Notifications enabled on this device', type: 'success' };
+  if (Notification.permission === 'denied') return { label: 'Notifications blocked in browser settings', type: 'error' };
+  return { label: 'Permission not yet granted', type: 'warning' };
+}
+
+function updateNotificationStatus() {
+  const el = document.getElementById('notification-status');
+  if (!el) return;
+  const status = notificationCapability();
+  el.textContent = status.label;
+  el.className = `notification-status status-${status.type}`;
+}
+
+async function sendPracticeNotification(message) {
+  if (!('Notification' in window) || Notification.permission !== 'granted') return false;
+  const options = { body: message, icon: 'icon.svg', badge: 'icon.svg', tag: 'physiology-practice', renotify: true, data: { url: './index.html?open=practice' } };
+  if ('serviceWorker' in navigator) {
+    const registration = await navigator.serviceWorker.ready;
+    await registration.showNotification('Time to practice Physiology', options);
+  } else {
+    new Notification('Time to practice Physiology', options);
+  }
+  return true;
+}
+
+function renderReminders() {
+  const list = document.getElementById('reminder-list');
+  if (!list) return;
+  updateNotificationStatus();
+  document.getElementById('reminder-count').textContent = `${State.reminders.length} reminder${State.reminders.length === 1 ? '' : 's'}`;
+  if (!State.reminders.length) {
+    list.innerHTML = '<div class="reminder-empty"><span>🔔</span><h3>No reminders yet</h3><p>Add your morning and night practice times above.</p></div>';
+    return;
+  }
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  list.innerHTML = State.reminders.slice().sort((a, b) => a.time.localeCompare(b.time)).map(reminder => {
+    const [hour, minute] = reminder.time.split(':').map(Number);
+    const displayTime = new Date(2000, 0, 1, hour, minute).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    const days = reminder.days.length === 7 ? 'Every day' : reminder.days.map(d => dayNames[d]).join(', ');
+    return `<article class="reminder-item ${reminder.enabled ? '' : 'is-paused'}">
+      <button class="reminder-toggle" data-reminder-toggle="${reminder.id}" role="switch" aria-checked="${reminder.enabled}" aria-label="${reminder.enabled ? 'Pause' : 'Enable'} reminder"><span></span></button>
+      <div class="reminder-time"><strong>${displayTime}</strong><span>${days}</span></div>
+      <p>${escapeHtml(reminder.message)}</p>
+      <button class="reminder-delete" data-reminder-delete="${reminder.id}" aria-label="Delete reminder">×</button>
+    </article>`;
+  }).join('');
+}
+
+function escapeHtml(value) {
+  const div = document.createElement('div');
+  div.textContent = value;
+  return div.innerHTML;
+}
+
+document.getElementById('btn-add-reminder')?.addEventListener('click', () => {
+  const time = document.getElementById('reminder-time').value;
+  const messageInput = document.getElementById('reminder-message');
+  const message = messageInput.value.trim() || REMINDER_MOTIVATIONS[State.reminders.length % REMINDER_MOTIVATIONS.length];
+  const days = [...document.querySelectorAll('.weekday-picker input:checked')].map(input => Number(input.value));
+  if (!time || !days.length) return showToast('Choose a time and at least one day.', 'warning');
+  State.reminders.push({ id: `${Date.now()}-${Math.random().toString(16).slice(2)}`, time, message, days, enabled: true, lastSent: '' });
+  State.save();
+  renderReminders();
+  showToast('Practice reminder added.', 'success');
+});
+
+document.getElementById('reminder-list')?.addEventListener('click', event => {
+  const toggle = event.target.closest('[data-reminder-toggle]');
+  const remove = event.target.closest('[data-reminder-delete]');
+  if (toggle) {
+    const reminder = State.reminders.find(item => item.id === toggle.dataset.reminderToggle);
+    if (reminder) reminder.enabled = !reminder.enabled;
+  } else if (remove) {
+    State.reminders = State.reminders.filter(item => item.id !== remove.dataset.reminderDelete);
+  } else return;
+  State.save();
+  renderReminders();
+});
+
+document.getElementById('btn-enable-notifications')?.addEventListener('click', async () => {
+  if (!('Notification' in window)) return showToast('This browser does not support notifications.', 'error');
+  const permission = await Notification.requestPermission();
+  updateNotificationStatus();
+  showToast(permission === 'granted' ? 'Phone notifications enabled.' : 'Notification permission was not granted.', permission === 'granted' ? 'success' : 'warning');
+});
+
+document.getElementById('btn-test-notification')?.addEventListener('click', async () => {
+  try {
+    const sent = await sendPracticeNotification('Small daily practice creates lasting clinical knowledge. You can do this!');
+    showToast(sent ? 'Test notification sent.' : 'Enable notifications first.', sent ? 'success' : 'warning');
+  } catch { showToast('The test notification could not be sent.', 'error'); }
+});
+
+function checkPracticeReminders() {
+  if (typeof Notification === 'undefined' || Notification.permission !== 'granted') return;
+  const now = new Date();
+  const time = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  const dateKey = now.toLocaleDateString('en-CA');
+  State.reminders.forEach(reminder => {
+    const sentKey = `${dateKey}-${reminder.time}`;
+    if (reminder.enabled && reminder.days.includes(now.getDay()) && reminder.time === time && reminder.lastSent !== sentKey) {
+      reminder.lastSent = sentKey;
+      State.save();
+      sendPracticeNotification(reminder.message).catch(() => {});
+    }
+  });
+}
+if (!isTestEnv) setInterval(checkPracticeReminders, 30000);
+checkPracticeReminders();
+
 // Register Offline Service Worker (Progressive Web App support)
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
@@ -15983,4 +16114,9 @@ renderDashboard();
 renderAnalytics();
 renderBookmarksList();
 renderFlashcard();
+renderReminders();
+
+if (new URLSearchParams(window.location.search).get('open') === 'practice') {
+  document.getElementById('tab-practice')?.click();
+}
 
